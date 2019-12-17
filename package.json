@@ -1,0 +1,34 @@
+{
+  "name": "backend-caleb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "server":"nodemon index.js",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebredd/lambda-backend-bw.git"
+  },
+  "author": "Caleb Redd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calebredd/lambda-backend-bw/issues"
+  },
+  "homepage": "https://github.com/calebredd/lambda-backend-bw#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.4",
+    "nodemon": "^2.0.2",
+    "sqlite3": "^4.1.1",
+    "supertest": "^4.0.2"
+  }
+}

@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("users", tbl => {
-      tbl.increments();
+      tbl.increments("id");
       tbl
         .string("username", 128)
         .unique()
@@ -11,9 +11,10 @@ exports.up = function(knex) {
       tbl.string("state", 128).notNullable();
       tbl.integer("zipCode", 5).notNullable();
       tbl.string("profileImgURL", 128);
+      tbl.boolean("farmer").defaultTo(false);
     })
     .createTable("produce", tbl => {
-      tbl.increments();
+      tbl.increments("id");
       tbl
         .string("name", 128)
         .unique()
@@ -38,10 +39,8 @@ exports.up = function(knex) {
         .unsigned()
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-      tbl
-        .integer("quantity")
-        .notNullable()
-        .unsigned();
+      tbl.integer("quantity").unsigned();
+      tbl.float("price").unsigned();
       tbl.primary(["user_id", "produce_id"]);
     });
 };

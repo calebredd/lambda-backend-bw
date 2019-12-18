@@ -1,6 +1,6 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema
-    .createTable("users", tbl => {
+    .createTable("farmers", tbl => {
       tbl.increments("id");
       tbl
         .string("username", 128)
@@ -12,20 +12,11 @@ exports.up = function(knex) {
       tbl.integer("zipCode", 5).notNullable();
       tbl.string("profileImgURL", 128);
     })
-    .createTable("produce", tbl => {
-      tbl.increments("id");
+    .createTable("farmers_produce", tbl => {
       tbl
-        .string("name", 128)
-        .unique()
-        .notNullable();
-      tbl.string("description", 128);
-      tbl.string("produceImgURL", 128);
-    })
-    .createTable("users_produce", tbl => {
-      tbl
-        .integer("user_id")
+        .integer("farmer_id")
         .references("id")
-        .inTable("users")
+        .inTable("farmers")
         .notNullable()
         .unsigned()
         .onUpdate("CASCADE")
@@ -40,13 +31,12 @@ exports.up = function(knex) {
         .onDelete("CASCADE");
       tbl.integer("quantity").unsigned();
       tbl.float("price").unsigned();
-      tbl.primary(["user_id", "produce_id"]);
+      tbl.primary(["farmer_id", "produce_id"]);
     });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists("users_produce")
-    .dropTableIfExists("produce")
-    .dropTableIfExists("users");
+    .dropTableIfExists("farmers_produce")
+    .dropTableIfExists("farmers");
 };

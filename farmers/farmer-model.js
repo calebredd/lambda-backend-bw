@@ -1,7 +1,7 @@
 const db = require("../database/db-config");
 
 function find() {
-  return db("users").select(
+  return db("farmers").select(
     "id",
     "username",
     "city",
@@ -12,26 +12,40 @@ function find() {
 }
 
 function findByName(filter) {
-  return db("users")
-    .where({ username:filter })
+  return db("farmers")
+    .where({username:filter })
     .first()
-    .select("id", "username", "city", "state", "zipCode", "profileImgURL");
+    .select(
+      "id",
+      "username",
+      "city",
+      "state",
+      "zipCode",
+      "profileImgURL"
+    );
 }
 
 function findById(id) {
-  return db("users")
+  return db("farmers")
     .where({ id })
     .first()
-    .select("id", "username", "city", "state", "zipCode", "profileImgURL");
+    .select(
+      "id",
+      "username",
+      "city",
+      "state",
+      "zipCode",
+      "profileImgURL"
+    );
 }
 
 async function insert(user) {
-  const [id] = await db("users").insert(user);
+  const [id] = await db("farmers").insert(user);
   return findById(id);
 }
 
 function update(id, user) {
-  return db("users")
+  return db("farmers")
     .where({ id })
     .first()
     .update(user);

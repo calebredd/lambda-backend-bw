@@ -2,8 +2,9 @@ const express = require("express"),
   server = express(),
   cors = require("cors"),
   helmet = require("helmet"),
-  userRoute = require("../users/user-routes");
-produceRoute = require("../produce/produce-routes");
+  userRoute = require("../users/user-routes"),
+  farmerRoute = require("../farmers/farmer-routes"),
+  produceRoute = require("../produce/produce-routes");
 
 server.use(express.json());
 server.use(helmet());
@@ -24,6 +25,7 @@ server.get("/api", (req, res) => {
   );
 });
 server.use("/api/users", userRoute);
+server.use("/api/farmers", farmerRoute);
 server.use("/api/produce", produceRoute);
 
 module.exports = server;

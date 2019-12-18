@@ -1,12 +1,12 @@
 const express = require("express"),
-  Users = require("./user-model"),
+  Farmers = require("./farmer-model"),
   bcrypt = require("bcryptjs"),
   jwt = require("jsonwebtoken"),
   secrets = require("../config/secrets.js"),
   restricted = require("../middleware/auth-middleware.js"),
   router = express.Router();
 router.get("/", (req, res) => {
-  Users.find()
+  Farmers.find()
     .then(users => {
       res.status(200).json(users);
     })
@@ -21,7 +21,7 @@ router.post("/register", (req, res) => {
   const user = { username, profileImgURL, city, state, zipCode };
   const hash = bcrypt.hashSync(password, 10);
   user.password = hash;
-  Users.insert(user)
+  Farmers.insert(user)
     .then(saved => {
       const token = genToken(saved);
       res.status(200).json({
@@ -36,9 +36,8 @@ router.post("/register", (req, res) => {
 });
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  Users.findByName(username)
+  Farmers.findByName(username)
     .then(user => {
-      console.log(user);
       if (user && user.id > 4 && bcrypt.compareSync(password, user.password)) {
         const token = genToken(user);
         res.status(200).json({
@@ -67,13 +66,12 @@ router.post("/login", (req, res) => {
 });
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  Users.findById(id)
+  Farmers.findById(id)
     .then(user => {
-      console.log(user);
       if (user) {
         res.status(200).json(user);
       } else {
-        res.status(201).json({ errorMessage: "That user does not exist!" });
+        res.status(201).json({ errorMessage: "That farmer does not exist!" });
       }
     })
     .catch(err => {

@@ -10,7 +10,7 @@
 
 #### Routes for user links
 
-#### /api/users/all
+#### /api/users/
 
 ##### Returns a list of all users info except their password
 
@@ -22,7 +22,15 @@
 
 #### Routes for produce links
 
-<<<<<<< HEAD
+#### /api/produce/
+
+##### Returns a list of all produce info
+
+#### /api/produce/:id
+
+##### Returns info for an individual produce
+
+
 # Farm Fresh Produce
 
 ## PITCH
@@ -42,12 +50,3 @@
 - Add a google maps component that allows users to geolocate the farms in their local area.
 - Provide a payment plan or subscription service that allows me monthly/weekly access to farm fresh produce
 - Link farmers up with local drivers so that the app can become the instacart of farm fresh produce
-=======
-#### /api/produce/all
-
-##### Returns a list of all produce info
-
-#### /api/produce/:id
-
-##### Returns info for an individual produce
->>>>>>> 16ab08cc2036b59dd7b1ddca7cc93308d7492565
